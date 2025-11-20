@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Especialidades - Hospital El Alto Sur</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <style>
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1; /* detrás de todo */
+
+    --sz: 4px;  /* figuras más pequeñas */
+    
+    --c1: #d7f3e3;  /* verde menta suave */
+    --c2: #b9e6d5;  /* verde agua */
+    --c3: #cce7f0;  /* celeste muy suave */
+    --c4: #e0e0e0;  /* gris claro */
+    
+    --ts: 50%/ calc(var(--sz) * 18.8) calc(var(--sz) * 10.8);
+
+    background: 
+        conic-gradient(from 0deg at 65% 35%, var(--c3) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 65% 35%, var(--c3) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 240deg at 35% 35%, var(--c2) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 240deg at 35% 35%, var(--c2) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 75% 65%, var(--c4) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 75% 65%, var(--c4) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 240deg at 25% 65%, var(--c4) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 240deg at 25% 65%, var(--c4) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 65% 65%, var(--c1) 0 60deg, var(--c3) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 65% 65%, var(--c1) 0 60deg, var(--c3) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 180deg at 35% 65%, var(--c2) 0 60deg, var(--c1) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 180deg at 35% 65%, var(--c2) 0 60deg, var(--c1) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 60% 10%, var(--c1) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -120deg at 40% 10%, var(--c1) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 20%, var(--c3) 0 60deg, var(--c2) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 20%, var(--c3) 0 60deg, var(--c2) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 40%, var(--c4) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 50%, var(--c1) 0 120deg, var(--c2) 0 240deg, var(--c3) 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 50%, var(--c1) 0 120deg, var(--c2) 0 240deg, var(--c3) 0 100%) var(--ts);
+
+    background-size: var(--ts);
+    background-repeat: repeat;
+}
+
+    body {
+      background: linear-gradient(to bottom right, #b2fefa, #0ed2f7);
+      color: #222;
+      perspective: 1000px;
+    }
+
+    h2, h3 {
+      color: #0d6efd;
+    }
+ .navbar {
+    padding-top: 1.2rem !important;
+    padding-bottom: 1.2rem !important;
+    font-size: 1.1rem;
+  }
+   section#inicio {
+    margin-top: 5rem !important;
+  }
+
+    /* Efecto de zoom en las imágenes circulares */
+    .img-circular {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+      margin: auto;
+      display: block;
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .img-circular:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+    }
+
+    .card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) rotateX(5deg);
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
+    }
+
+    footer a:hover {
+      color: #ffc107;
+      text-decoration: underline;
+    }
+
+    .offcanvas-body img {
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#menu" data-bs-offset="50" tabindex="0">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index2.html">Hospital El Alto Sur</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="index2.html" class="nav-link text-white">Inicio</a></li>
+          <li class="nav-item"><a href="servicios.html" class="nav-link text-white">Servicios</a></li>
+          <li class="nav-item"><a href="especialidades.html" class="nav-link text-white active">Especialidades</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- OFFCANVAS -->
+  <div class="offcanvas offcanvas-start text-bg-primary" tabindex="-1" id="offcanvasMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menú Hospital</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <img src="img/foto1.jpg" class="w-100 mb-3">
+      <ul class="list-unstyled">
+        <li><a href="index2.html" class="text-white d-block mb-2"><i class="bi bi-house-door"></i> Inicio</a></li>
+        <li><a href="servicios.html" class="text-white d-block mb-2"><i class="bi bi-heart-pulse"></i> Servicios</a></li>
+        <li><a href="especialidades.html" class="text-white d-block mb-2"><i class="bi bi-people"></i> Especialidades</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ENCABEZADO -->
+<div class="container text-center mt-5 pt-5">
+  <h2 class="fw-bold">Nuestras Especialidades Médicas</h2>
+  <p class="lead">Contamos con especialistas altamente capacitados para tu atención integral.</p>
+</div>
+
+<!-- CARRUSEL -->
+<div class="container mt-4">
+  <div id="carouselEspecialidades" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner rounded">
+      <div class="carousel-item active">
+        <img src="img/foto1.jpg" class="d-block w-100" height="200" alt="Hospital Imagen 1">
+      </div>
+      <div class="carousel-item">
+        <img src="img/foto22.jpg" class="d-block w-100" height="200" alt="Hospital Imagen 2">
+      </div>
+      <div class="carousel-item">
+        <img src="img/foto33.jpg" class="d-block w-100" height="200" alt="Hospital Imagen 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselEspecialidades" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselEspecialidades" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+
+  <!-- TARJETAS DE ESPECIALIDADES -->
+  <div class="container mt-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/pediatria.jpg" class="img-circular" alt="Pediatría">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Pediatría</h5>
+            <p>Atención integral a niños y adolescentes, cuidando su salud y desarrollo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/cardiologia.jpg" class="img-circular" alt="Cardiología">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Cardiología</h5>
+            <p>Prevención y tratamiento de enfermedades del corazón y sistema circulatorio.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/ginecologia.jpg" class="img-circular" alt="Ginecología">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Ginecología</h5>
+            <p>Atención integral a la salud femenina en todas las etapas de la vida.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nuevas especialidades -->
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/neurologia.jpg" class="img-circular" alt="Neurología">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Neurología</h5>
+            <p>Diagnóstico y tratamiento de enfermedades del sistema nervioso.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/ortopedia.jpg" class="img-circular" alt="Ortopedia">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Ortopedia</h5>
+            <p>Tratamiento de huesos, articulaciones y lesiones musculoesqueléticas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/dermatologia.jpg" class="img-circular" alt="Dermatología">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Dermatología</h5>
+            <p>Prevención y tratamiento de enfermedades de la piel, cabello y uñas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/oftamologia.jpg" class="img-circular" alt="Oftalmología">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Oftalmología</h5>
+            <p>Atención y tratamiento de enfermedades y cirugías del ojo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/psiquiatria.jpg" class="img-circular" alt="Psiquiatría">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Psiquiatría</h5>
+            <p>Tratamiento y acompañamiento de trastornos mentales y emocionales.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ACORDEÓN DETALLADO -->
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Detalles de Especialidades</h2>
+    <div class="accordion" id="accordionEspecialidades">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#pediatria">Pediatría</button>
+        </h2>
+        <div id="pediatria" class="accordion-collapse collapse show" data-bs-parent="#accordionEspecialidades">
+          <div class="accordion-body">
+            Control de crecimiento, vacunación y atención de enfermedades infantiles.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#cardiologia">Cardiología</button>
+        </h2>
+        <div id="cardiologia" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
+          <div class="accordion-body">
+            Electrocardiogramas, ecocardiogramas, tratamiento y seguimiento de pacientes cardiacos.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ginecologia">Ginecología</button>
+        </h2>
+        <div id="ginecologia" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
+          <div class="accordion-body">
+            Control prenatal, planificación familiar y prevención de cáncer ginecológico.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#neurologia">Neurología</button>
+        </h2>
+        <div id="neurologia" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
+          <div class="accordion-body">
+            Diagnóstico y tratamiento de enfermedades neurológicas como epilepsia y migraña.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ortopedia">Ortopedia</button>
+        </h2>
+        <div id="ortopedia" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
+          <div class="accordion-body">
+            Tratamiento de fracturas, lesiones deportivas y rehabilitación musculoesquelética.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#dermatologia">Dermatología</button>
+        </h2>
+        <div id="dermatologia" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
+          <div class="accordion-body">
+            Diagnóstico y tratamiento de enfermedades de piel, uñas y cabello.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#oftalmologia">Oftalmología</button>
+        </h2>
+        <div id="oftalmologia" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
+          <div class="accordion-body">
+            Atención de problemas visuales, cirugías y controles preventivos.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#psiquiatria">Psiquiatría</button>
+        </h2>
+        <div id="psiquiatria" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
+          <div class="accordion-body">
+            Evaluación, terapia y seguimiento de trastornos psicológicos y psiquiátricos.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="container mt-5">
+    <h4 class="text-center">Nivel de atención por especialidad</h4>
+    <div class="progress mt-2" style="height: 25px;">
+      <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 95%">Pediatría 95%</div>
+    </div>
+    <div class="progress mt-2" style="height: 25px;">
+      <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: 90%">Cardiología 90%</div>
+    </div>
+    <div class="progress mt-2" style="height: 25px;">
+      <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 92%">Ginecología 92%</div>
+    </div>
+   <div class="progress mt-2" style="height: 25px;">
+  <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width: 80%">Neurologia 80%</div>
+</div>
+
+<div class="progress mt-2" style="height: 25px;">
+  <div class="progress-bar" style="background-color: #ff6f61; width: 85%;">Ortopedia 85%</div> <!-- Coral -->
+</div>
+
+<div class="progress mt-2" style="height: 25px;">
+  <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: 96%">Dermatologia 96%</div>
+</div>
+
+<div class="progress mt-2" style="height: 25px;">
+  <div class="progress-bar" style="background-color: #9b59b6; width: 95%;">Oftalmologia 95%</div> <!-- Morado -->
+</div>
+
+<div class="progress mt-2" style="height: 25px;">
+  <div class="progress-bar bg-secondary progress-bar-striped progress-bar-animated" style="width: 84%">Psiquiatria 84%</div>
+</div>
+
+  </div>
+ <nav aria-label="Paginación" class="mt-5">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled"><a class="page-link">Anterior</a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+    </ul>
+  </nav>
+  <!-- ALERTAS -->
+  <div class="container mt-5">
+    <div class="alert alert-primary">Atendemos emergencias las 24 horas.</div>
+    <div class="alert alert-success">Contamos con médicos certificados y tecnología avanzada.</div>
+    <div class="alert alert-warning">Recuerda agendar tus controles médicos con anticipación.</div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="position-fixed bottom-0 end-0 p-3">
+    <div class="toast text-bg-info border-0" id="toastEspecialidades" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">Página de especialidades cargada correctamente.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+   <footer class="bg-dark text-light text-center p-4 mt-5">
+  <p>Síguenos en nuestras redes:</p>
+
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/share/1DEBn4riAH"
+ 
+     class="text-light m-2"
+     target="_blank"
+     data-bs-toggle="tooltip"
+     title="Síguenos en Facebook">
+     <i class="bi bi-facebook"></i> Facebook
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/valentinaespejog/"
+     class="text-light m-2"
+     target="_blank"
+     data-bs-toggle="tooltip"
+     title="Míranos en Instagram">
+     <i class="bi bi-instagram"></i> Instagram
+  </a>
+
+  <!-- Twitter / X -->
+  <a href="https://x.com/@valentinae23262"
+     class="text-light m-2"
+     target="_blank"
+     data-bs-toggle="tooltip"
+     title="Síguenos en Twitter">
+     <i class="bi bi-twitter"></i> Twitter
+  </a>
+
+  <p class="mt-3">
+    Ubicación:
+    <a href="https://www.google.com/maps/place/Av.+Juan+Pablo+II+s%2Fn,+Zona+16+de+Julio,+El+Alto,+La+Paz,+Bolivia"
+       class="text-warning"
+       target="_blank">
+      Ver en Google Maps
+    </a>
+  </p>
+
+  <p class="mb-0">© 2025 Hospital El Alto Sur</p>
+  <p id="contadorVisitas" class="mt-2">Has visitado esta página 0 veces.</p>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const toast = new bootstrap.Toast(document.getElementById('toastEspecialidades'));
+    toast.show();
+  </script>
+  <script>
+  // Contador de visitas usando localStorage
+  let visitas = localStorage.getItem('contadorVisitas');
+  if (!visitas) visitas = 0;
+  visitas = parseInt(visitas) + 1;
+  localStorage.setItem('contadorVisitas', visitas);
+
+  document.getElementById('contadorVisitas').innerText = 
+      'Has visitado esta página ' + visitas + ' vez' + (visitas > 1 ? 's' : '') + '.';
+</script>
+
+</body>
+</html>

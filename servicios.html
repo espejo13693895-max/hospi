@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios - Hospital El Alto Sur</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <style>
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1; /* detrás de todo */
+
+    --sz: 4px;  /* figuras más pequeñas */
+    
+    --c1: #d7f3e3;  /* verde menta suave */
+    --c2: #b9e6d5;  /* verde agua */
+    --c3: #cce7f0;  /* celeste muy suave */
+    --c4: #e0e0e0;  /* gris claro */
+    
+    --ts: 50%/ calc(var(--sz) * 18.8) calc(var(--sz) * 10.8);
+
+    background: 
+        conic-gradient(from 0deg at 65% 35%, var(--c3) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 65% 35%, var(--c3) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 240deg at 35% 35%, var(--c2) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 240deg at 35% 35%, var(--c2) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 75% 65%, var(--c4) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 75% 65%, var(--c4) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 240deg at 25% 65%, var(--c4) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 240deg at 25% 65%, var(--c4) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 65% 65%, var(--c1) 0 60deg, var(--c3) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 65% 65%, var(--c1) 0 60deg, var(--c3) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 180deg at 35% 65%, var(--c2) 0 60deg, var(--c1) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 180deg at 35% 65%, var(--c2) 0 60deg, var(--c1) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from 60deg at 60% 10%, var(--c1) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -120deg at 40% 10%, var(--c1) 0 60deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 20%, var(--c3) 0 60deg, var(--c2) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 20%, var(--c3) 0 60deg, var(--c2) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 40%, var(--c4) 0 120deg, #fff0 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 50%, var(--c1) 0 120deg, var(--c2) 0 240deg, var(--c3) 0 100%) var(--ts),
+        conic-gradient(from -60deg at 50% 50%, var(--c1) 0 120deg, var(--c2) 0 240deg, var(--c3) 0 100%) var(--ts);
+
+    background-size: var(--ts);
+    background-repeat: repeat;
+}
+
+    body {
+      background: linear-gradient(to bottom right, #b2fefa, #0ed2f7);
+      color: #222;
+      perspective: 1000px;
+      scroll-behavior: smooth;
+    }
+
+    h2, h3 {
+      color: #0d6efd;
+    }
+ .navbar {
+    padding-top: 1.2rem !important;
+    padding-bottom: 1.2rem !important;
+    font-size: 1.1rem;
+  }
+   section#inicio {
+    margin-top: 5rem !important;
+  }
+
+    /* ==== Imágenes circulares con efecto zoom ==== */
+    .img-circular {
+      width: 230px;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+      margin: auto;
+      display: block;
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .img-circular:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+    }
+
+    /* ==== Efecto 3D en tarjetas ==== */
+    .card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) rotateX(5deg);
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
+    }
+
+    footer a:hover {
+      color: #ffc107;
+      text-decoration: underline;
+    }
+
+    .offcanvas-body img {
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#menu" data-bs-offset="50" tabindex="0">
+
+  <!-- =================== NAVBAR =================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index2.html">Hospital El Alto Sur</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="index2.html" class="nav-link text-white">Inicio</a></li>
+          <li class="nav-item"><a href="servicios.html" class="nav-link text-white">Servicios</a></li>
+          <li class="nav-item"><a href="especialidades.html" class="nav-link text-white">Especialidades</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =================== OFFCANVAS MENU =================== -->
+  <div class="offcanvas offcanvas-start text-bg-primary" tabindex="-1" id="offcanvasMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menú Hospital</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <img src="img/foto1.jpg" class="w-100 mb-3">
+      <ul class="list-unstyled">
+        <li><a href="index2.html" class="text-white d-block mb-2"><i class="bi bi-house-door"></i> Inicio</a></li>
+        <li><a href="servicios.html" class="text-white d-block mb-2"><i class="bi bi-heart-pulse"></i> Servicios</a></li>
+        <li><a href="especialidades.html" class="text-white d-block mb-2"><i class="bi bi-people"></i> Especialidades</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- =================== ENCABEZADO =================== -->
+  <div class="container text-center mt-5 pt-5">
+    <h2 class="fw-bold">Nuestros Servicios Médicos</h2>
+    <p class="lead">Conoce las áreas especializadas y la atención integral que ofrecemos en el Hospital El Alto Sur.</p>
+  </div>
+
+  <!-- =================== TARJETAS DE SERVICIOS =================== -->
+  <div class="container mt-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/foto88.jpg" class="img-circular" alt="Laboratorio Clínico">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Laboratorio Clínico</h5>
+            <p>Análisis precisos y rápidos para diagnósticos confiables y seguros.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/foto99.jpg" class="img-circular" alt="Radiología">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Radiología</h5>
+            <p>Equipos digitales modernos para obtener imágenes médicas de alta resolución.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card text-center p-3">
+          <img src="img/foto100.jpg" class="img-circular" alt="Terapia Física">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Terapia Física</h5>
+            <p>Tratamientos de rehabilitación para recuperación de movilidad y lesiones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== ACORDEÓN =================== -->
+  <!-- =================== ACORDEÓN =================== -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Detalles de Nuestros Servicios</h2>
+    <div class="accordion" id="accordionServicios">
+
+        <!-- LABORATORIO -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseLab">
+                    Laboratorio Clínico
+                </button>
+            </h2>
+            <div id="collapseLab" class="accordion-collapse collapse show">
+                <div class="accordion-body d-flex">
+                    <img src="img/foto88.jpg" class="me-3 rounded" width="150" alt="Lab">
+                    <p class="m-0">
+                        Contamos con un laboratorio moderno que realiza pruebas bioquímicas, 
+                        hematológicas y microbiológicas con resultados precisos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RADIOLOGÍA -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseRadio">
+                    Radiología
+                </button>
+            </h2>
+            <div id="collapseRadio" class="accordion-collapse collapse">
+                <div class="accordion-body d-flex">
+                    <img src="img/foto99.jpg" class="me-3 rounded" width="150" alt="Radiología">
+                    <p class="m-0">
+                        Ofrecemos estudios radiológicos, tomografías y ecografías con equipos 
+                        de última generación y especialistas certificados.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TERAPIA -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTerapia">
+                    Terapia Física
+                </button>
+            </h2>
+            <div id="collapseTerapia" class="accordion-collapse collapse">
+                <div class="accordion-body d-flex">
+                    <img src="img/foto100.jpg" class="me-3 rounded" width="150" alt="Terapia Física">
+                    <p class="m-0">
+                        Programas de fisioterapia personalizados enfocados en la recuperación 
+                        funcional y mejora de calidad de vida.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+  <!-- =================== PROGRESS BAR =================== -->
+  <div class="container mt-5">
+    <h4 class="text-center">Nivel de satisfacción de nuestros pacientes</h4>
+    <div class="progress" style="height: 25px;">
+      <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" style="width: 95%">95% Pacientes satisfechos</div>
+    </div>
+  </div>
+
+  <!-- =================== ALERTAS =================== -->
+  <section class="container mt-5">
+    <h3>Alertas del Hospital</h3>
+    <div class="alert alert-primary">Horario extendido en emergencias 24/7.</div>
+    <div class="alert alert-success">Nuevo equipo de diagnóstico por imagen disponible.</div>
+    <div class="alert alert-danger">Recuerda seguir las medidas de bioseguridad dentro del hospital.</div>
+  </section>
+
+  <!-- =================== BADGE =================== -->
+  <section class="container mt-4">
+    <h3>Notificaciones</h3>
+    <h4>Servicios destacados <span class="badge bg-danger">3 nuevos</span></h4>
+  </section>
+
+  <!-- =================== BREADCRUMB =================== -->
+  <section class="container mt-4">
+    <h3>Ruta de navegación</h3>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index2.html">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Servicios</li>
+      </ol>
+    </nav>
+  </section>
+
+  <!-- =================== BUTTONS =================== -->
+  <section class="container mt-4 text-center">
+    <h3>Enlaces rápidos</h3>
+    <div class="btn-group mt-3">
+      <button class="btn btn-primary">Inicio</button>
+      <button class="btn btn-success">Especialidades</button>
+      <button class="btn btn-info">Contáctanos</button>
+    </div>
+  </section>
+
+  <!-- =================== CARRUSEL =================== -->
+  <section class="container mt-5">
+    <h3 class="text-center">Galería de Servicios</h3>
+    <div id="carouselDemo" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner rounded">
+        <div class="carousel-item active"><img src="img/foto1.jpg" class="d-block w-100" height="250"></div>
+        <div class="carousel-item"><img src="img/foto22.jpg" class="d-block w-100" height="250"></div>
+        <div class="carousel-item"><img src="img/foto33.jpg" class="d-block w-100" height="250"></div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </div>
+  </section>
+
+  <!-- =================== ACORDEÓN DE PAGINACIÓN =================== -->
+<div class="container mt-5">
+  <h3 class="text-center mb-4">Sucursales del Hospital</h3>
+
+  <div class="accordion" id="accordionPaginas">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePaginas">
+          Ver Sucursales
+        </button>
+      </h2>
+
+      <div id="collapsePaginas" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+
+          <!-- PAGINACIÓN -->
+          <nav aria-label="Paginación" class="mt-3">
+            <ul class="pagination justify-content-center" id="paginador">
+              <li class="page-item">
+                <a class="page-link" href="#" onclick="cambiarPagina('prev'); return false;">Anterior</a>
+              </li>
+
+              <li class="page-item active"><a class="page-link" href="#" onclick="mostrarPagina(1); return false;">1</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarPagina(2); return false;">2</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarPagina(3); return false;">3</a></li>
+
+              <li class="page-item">
+                <a class="page-link" href="#" onclick="cambiarPagina('next'); return false;">Siguiente</a>
+              </li>
+            </ul>
+          </nav>
+
+         
+
+          <div id="contenidoPaginas">
+            <!-- Tu pag1, pag2, pag3 tal cual ya los tienes -->
+            <!-- =================== CONTENIDO DE PAGINACIÓN =================== -->
+<div class="container">
+
+    <!-- PAGINA 1 -->
+    <div class="row g-4 pag" id="pag1">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto1.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – Santa Cruz</h5>
+                    <p>Atención especializada con tecnología avanzada.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto100.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – Cochabamba</h5>
+                    <p>Centro regional de diagnóstico rápido y laboratorio.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto22.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – Tarija</h5>
+                    <p>Área de emergencias completamente equipada.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGINA 2 -->
+    <div class="row g-4 pag d-none" id="pag2">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto33.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – Beni</h5>
+                    <p>Clínica integral con especialidades médicas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto44.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – Pando</h5>
+                    <p>Servicios enfocados en medicina preventiva.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto55.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – Sucre</h5>
+                    <p>Infraestructura moderna y quirófanos digitales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGINA 3 -->
+    <div class="row g-4 pag d-none" id="pag3">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto66.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – Oruro</h5>
+                    <p>Área pediátrica especializada y neonatología.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto77.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – Potosí</h5>
+                    <p>Unidad de terapia intensiva moderna.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="img/foto88.jpg" class="card-img-top" height="180">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Hospital El Alto Sur – La Paz</h5>
+                    <p>Centro de especialidades y cirugías complejas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div> <!-- Cierra correctamente el container de la paginación -->
+</div> <!-- Cierra accordion-item -->
+</div> <!-- Cierra accordion -->
+</div> <!-- Cierra container principal -->
+
+
+  <!-- =================== TOAST =================== -->
+  <div class="position-fixed bottom-0 end-0 p-3">
+    <div class="toast text-bg-success border-0" id="toastInfo" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">Página de servicios cargada correctamente.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- =================== FOOTER =================== -->
+  <footer class="bg-dark text-light text-center p-4 mt-5">
+  <p>Síguenos en nuestras redes:</p>
+
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/share/1DEBn4riAH"
+ 
+     class="text-light m-2"
+     target="_blank"
+     data-bs-toggle="tooltip"
+     title="Síguenos en Facebook">
+     <i class="bi bi-facebook"></i> Facebook
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/valentinaespejog/"
+     class="text-light m-2"
+     target="_blank"
+     data-bs-toggle="tooltip"
+     title="Míranos en Instagram">
+     <i class="bi bi-instagram"></i> Instagram
+  </a>
+
+  <!-- Twitter / X -->
+  <a href="https://x.com/@valentinae23262"
+     class="text-light m-2"
+     target="_blank"
+     data-bs-toggle="tooltip"
+     title="Síguenos en Twitter">
+     <i class="bi bi-twitter"></i> Twitter
+  </a>
+
+  <p class="mt-3">
+    Ubicación:
+    <a href="https://www.google.com/maps/place/Av.+Juan+Pablo+II+s%2Fn,+Zona+16+de+Julio,+El+Alto,+La+Paz,+Bolivia"
+       class="text-warning"
+       target="_blank">
+      Ver en Google Maps
+    </a>
+  </p>
+
+  <p class="mb-0">© 2025 Hospital El Alto Sur</p>
+  <p id="contadorVisitas" class="mt-2">Has visitado esta página 0 veces.</p>
+</footer>
+
+  <!-- =================== SCRIPTS =================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Mostrar toast al cargar
+    const toast = new bootstrap.Toast(document.getElementById('toastInfo'));
+    toast.show();
+
+    // Activar tooltips
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+  </script>
+<script>
+  // Contador de visitas usando localStorage
+  let visitas = localStorage.getItem('contadorVisitas');
+  if (!visitas) visitas = 0;
+  visitas = parseInt(visitas) + 1;
+  localStorage.setItem('contadorVisitas', visitas);
+
+  document.getElementById('contadorVisitas').innerText = 
+      'Has visitado esta página ' + visitas + ' vez' + (visitas > 1 ? 's' : '') + '.';
+</script>
+<script>
+let paginaActual = 1;
+const totalPaginas = 3;
+
+function mostrarPagina(num) {
+    paginaActual = num;
+
+    // Ocultar páginas
+    document.querySelectorAll(".pag").forEach(p => p.classList.add("d-none"));
+
+    // Mostrar página seleccionada
+    document.getElementById("pag" + num).classList.remove("d-none");
+
+    // Actualizar paginación visual
+    const botones = document.querySelectorAll("#paginador .page-item");
+    botones.forEach(b => b.classList.remove("active"));
+    botones[num].classList.add("active");
+
+    actualizarBotones();
+
+    // ❌ NO cerrar NI abrir el acordeón aquí
+    // Bootstrap mantendrá su estado natural
+
+    // Scroll suave sin mover la página al top
+    document.getElementById("collapsePaginas").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function cambiarPagina(dir) {
+    if (dir === "prev" && paginaActual > 1) {
+        mostrarPagina(paginaActual - 1);
+    }
+    if (dir === "next" && paginaActual < totalPaginas) {
+        mostrarPagina(paginaActual + 1);
+    }
+}
+
+function actualizarBotones() {
+    const botones = document.querySelectorAll("#paginador .page-item");
+    botones[0].classList.toggle("disabled", paginaActual === 1);
+    botones[totalPaginas + 1].classList.toggle("disabled", paginaActual === totalPaginas);
+}
+
+// Mantener el estado del acordeón
+// (Si está abierto, sigue abierto. Si está cerrado, sigue cerrado)
+const collapse = document.getElementById("collapsePaginas");
+collapse.addEventListener('shown.bs.collapse', () => collapse.dataset.open = "1");
+collapse.addEventListener('hidden.bs.collapse', () => collapse.dataset.open = "0");
+
+// Inicio
+actualizarBotones();
+</script>
+
+
+
+</body>
+</html>
